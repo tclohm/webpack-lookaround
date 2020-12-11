@@ -7,10 +7,10 @@
     "serve": "http-server ./",
     "webpack": "webpack",
     "debug": "node --inspect --debug-brk ./node_modules/webpack/bin/webpack.js",
-    "dev": "yarn run webpack -- --mode development",
-    "prod": "yarn run webpack -- --mode production",
-    "dev:debug": "yarn run debug -- --mode development",
-    "prod:debug": "yarn run debug -- --mode production",
+    "dev": "yarn run webpack --mode development --watch",
+    "prod": "yarn run webpack --mode production",
+    "dev:debug": "yarn run debug --mode development",
+    "prod:debug": "yarn run debug --mode production",
     "debugthis": "node --inspect --inspect-brk ./src/index.js"
   },
   "repository": {
