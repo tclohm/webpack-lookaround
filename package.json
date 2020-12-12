@@ -4,13 +4,14 @@
   "description": "Learning resources for the webpack academy workshop series for 2018",
   "main": "index.js",
   "scripts": {
+    "webpack-dev-server": "webpack-dev-server",
     "serve": "http-server ./",
     "webpack": "webpack",
     "debug": "node --inspect --debug-brk ./node_modules/webpack/bin/webpack.js",
-    "dev": "yarn run webpack --mode development --watch",
-    "prod": "yarn run webpack --mode production",
-    "dev:debug": "yarn run debug --mode development",
-    "prod:debug": "yarn run debug --mode production",
+    "dev": "yarn run webpack-dev-server --env.mode development --watch",
+    "prod": "yarn run webpack --env.mode production",
+    "dev:debug": "yarn run debug --env.mode development",
+    "prod:debug": "yarn run debug --env.mode production",
     "debugthis": "node --inspect --inspect-brk ./src/index.js"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "http-server": "^0.11.1",
     "webpack": "^5.10.0",
     "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.6.1"
   }
 }
