@@ -1,15 +1,35 @@
 const webpack = require("webpack");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpackMerge = require("webpack-merge");
 
-// MARK: -- override defaults here
-module.exports = ({ mode, present } = { mode: "production", presets: [] }) => {
-	console.log(mode);
-	return {
-		mode,
-		output: {
-			filename: "bundle.js"
-		},
-		plugins: [new HTMLWebpackPlugin(), new webpack.ProgressPlugin()]
-	};
+const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
+const presetConfig = require("./build-utils/loadPresets");
+
+module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
+  return webpackMerge(
+    {
+      mode,
+      module: {
+        rules: [
+          {
+            test: /\.jpe?g$/,
+            use: [
+              {
+                loader: "url-loader",
+                options: {
+                  limit: 5000
+                }
+              }
+            ]
+          }
+        ]
+      },
+      output: {
+        filename: "bundle.js"
+      },
+      plugins: [new HtmlWebpackPlugin(), new webpack.ProgressPlugin()]
+    },
+    modeConfig(mode),
+    presetConfig({ mode, presets })
+  );
 };
