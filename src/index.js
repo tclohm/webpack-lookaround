@@ -1,5 +1,6 @@
 import nav from "./nav";
-import { footer } from "./footer";
+const getFooter = () => import(
+	/* webpackChunkName: "footer" */ "./footer");
 import makeButton from "./button";
 import { makeColorStyle } from "./button-styles";
 import makeImage from "./image";
@@ -13,4 +14,9 @@ button.style = makeColorStyle("cyan");
 
 document.body.appendChild(button);
 document.body.appendChild(image);
-document.body.appendChild(footer);
+
+button.addEventListener("click", e => {
+	getFooter().then(({footer}) => {
+		document.body.appendChild(footerModule.footer)
+	})
+})
